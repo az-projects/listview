@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+import os
 # Django settings for listview project.
 
 DEBUG = True
@@ -9,15 +11,33 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'E:\\jianguo\\django\\workspace\\listview\\1\\listview\\sqlite.db',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-    }
+if 'SERVER_SOFTWARE' in os.environ:
+    # SAE 用，根据 SAE  MYSQL数据库配置填写下面参数，一般都是这样的
+    import sae.const 
+    MYSQL_DB = sae.const.MYSQL_DB 
+    MYSQL_USER = sae.const.MYSQL_USER 
+    MYSQL_PASS = sae.const.MYSQL_PASS 
+    MYSQL_HOST_M = sae.const.MYSQL_HOST 
+    MYSQL_HOST_S = sae.const.MYSQL_HOST_S 
+    MYSQL_PORT = sae.const.MYSQL_PORT
+else:
+    # Local 本地调试用，便于导出数据库,根据本地MYSQL数据库填写下面参数
+    MYSQL_DB = 'test' 
+    MYSQL_USER = 'root' 
+    MYSQL_PASS = '' 
+    MYSQL_HOST_M = '127.0.0.1' 
+    MYSQL_HOST_S = '127.0.0.1' 
+    MYSQL_PORT = '3306' 
+
+DATABASES = { 
+    'default': { 
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': MYSQL_DB, 
+        'USER': MYSQL_USER, 
+        'PASSWORD': MYSQL_PASS, 
+        'HOST': MYSQL_HOST_M, 
+        'PORT': MYSQL_PORT, 
+    } 
 }
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
@@ -32,7 +52,7 @@ TIME_ZONE = 'America/Chicago'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-cn'
 
 SITE_ID = 1
 
@@ -111,7 +131,7 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
-
+STATICFILES_DIRS += (os.path.join(os.path.dirname("__file__"), 'static') ,)
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -120,9 +140,10 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'readlist',
 )
 
 # A sample logging configuration. The only tangible logging
