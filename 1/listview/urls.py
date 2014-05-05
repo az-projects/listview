@@ -19,7 +19,7 @@ urlpatterns = patterns('',
 urlpatterns += patterns ('',
  url(r'^readlist/', include('readlist.urls')),
  url(r'^admin/', include(admin.site.urls)),
- #url(r'^restframework', include('djangorestframework.urls', namespace='djangorestframework')),
+ url(r'^restframework', include('djangorestframework.urls', namespace='djangorestframework')),
  )
 
 urlpatterns += staticfiles_urlpatterns()
