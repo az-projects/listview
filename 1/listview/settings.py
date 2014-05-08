@@ -6,7 +6,8 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('tony', 'Tangxuguo@gmail.com'),
+    ('willard', 'yongyuanstu@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -92,7 +93,7 @@ STATICFILES_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
-STATICFILES_DIRS += (os.path.join(os.path.dirname("__file__"), 'static') ,)
+
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
@@ -133,6 +134,8 @@ TEMPLATE_DIRS = (
 )
 TEMPLATE_DIRS += (os.path.join(os.path.dirname("__file__"), 'templates') ,)
 
+STATICFILES_DIRS += (os.path.join(os.path.dirname("__file__"), 'static') ,)
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -145,7 +148,6 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'readlist',
-    'django-groundwork',
 )
 
 # A sample logging configuration. The only tangible logging

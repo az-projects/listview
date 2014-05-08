@@ -1,6 +1,8 @@
 from django.conf.urls import patterns, include, url
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
+from django.views.generic import TemplateView
+
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
@@ -17,9 +19,10 @@ urlpatterns = patterns('',
     # url(r'^admin/', include(admin.site.urls)),
 )
 urlpatterns += patterns ('',
+ url(r'^$', TemplateView.as_view(template_name='base.html')),
  url(r'^readlist/', include('readlist.urls')),
  url(r'^admin/', include(admin.site.urls)),
- url(r'^restframework', include('djangorestframework.urls', namespace='djangorestframework')),
+ #url(r'^restframework', include('djangorestframework.urls', namespace='djangorestframework')),
  )
 
 urlpatterns += staticfiles_urlpatterns()
