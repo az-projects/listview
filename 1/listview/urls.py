@@ -7,7 +7,7 @@ from django.views.generic import TemplateView
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns = patterns( '',
     # Examples:
     # url(r'^$', 'saetest.views.home', name='home'),
     # url(r'^saetest/', include('saetest.foo.urls')),
@@ -17,12 +17,12 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
-)
-urlpatterns += patterns ('',
- url(r'^$', TemplateView.as_view(template_name='base.html')),
- url(r'^readlist/', include('readlist.urls')),
- url(r'^admin/', include(admin.site.urls)),
- #url(r'^restframework', include('djangorestframework.urls', namespace='djangorestframework')),
+ )
+urlpatterns += patterns ( '',
+ url( r'^$', TemplateView.as_view( template_name = 'base.html' ) ),
+ url( r'^readlist/', include( 'readlist.urls' ) ),
+ url( r'^admin/', include( admin.site.urls ) ),
+ url( r'^restframework', include( 'djangorestframework.urls', namespace = 'djangorestframework' ) ),
  )
 
 urlpatterns += staticfiles_urlpatterns()
